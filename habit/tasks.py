@@ -35,3 +35,6 @@ def send_notification(habit):
 def update_next_notification_time(habit, delta):
     habit.next_notification += delta
     habit.save()
+
+
+# telegram_user_id = 920340035

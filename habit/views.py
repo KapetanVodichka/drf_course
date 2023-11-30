@@ -49,8 +49,7 @@ class UsefulHabitRetrieveAPIView(RetrieveAPIView):
 class UsefulHabitUpdateAPIView(UpdateAPIView):
     serializer_class = UpdateUsefulHabitSerializer
     queryset = UsefulHabit.objects.all()
-    # permission_classes = [IsAuthenticated, IsOwner]
-    permission_classes = [AllowAny, IsOwner]
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class UsefulHabitDestroyAPIView(DestroyAPIView):

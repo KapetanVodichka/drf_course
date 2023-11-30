@@ -46,6 +46,18 @@ class UpdateUsefulHabitSerializer(serializers.ModelSerializer):
         else:
             return data
 
+    def update(self, instance, validated_data):
+        if 'related_habit' in validated_data and validated_data['related_habit'] and instance.reward:
+            validated_data['reward'] = None
+        elif 'reward' in validated_data and validated_data['reward'] and instance.related_habit:
+            validated_data['related_habit'] = None
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        instance.save()
+        return instance
+
 
 class PleasantHabitSerializer(HabitSerializer):
     class Meta(HabitSerializer.Meta):
